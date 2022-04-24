@@ -43,6 +43,14 @@ function App() {
   };
 
   const deletePost = index => {
+    if(edit){
+      setEdit(false);
+      return setPost({
+        userName: '',
+        title: '',
+        body: ''
+      });
+    }
     const newPosts = [...posts];
     newPosts.splice(index, 1);
     setPosts(newPosts);
