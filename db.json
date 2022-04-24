@@ -1,0 +1,29 @@
+{
+    "posts": [
+      {
+        "userName": 1,
+        "title": "Java",
+        "body": "Introduction to java"
+      },
+      {
+        "userName": 2,
+        "title": "C++",
+        "body": "Introduction to c++"
+      },
+      {
+        "userName": 3,
+        "title": "Python",
+        "body": "Introduction to python"
+      },
+      {
+        "userName": 4,
+        "title": "Web Development",
+        "body": "Introduction to Html and css"
+      },
+      {
+        "userName": 5,
+        "title": "ReactJS",
+        "body": "Introduction to React JS"
+      }
+    ]
+  }
