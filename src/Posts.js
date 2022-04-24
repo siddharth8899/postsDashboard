@@ -1,13 +1,13 @@
 import axios from "axios";
 import React from "react";
 
-const getDataUrl = "https://jsonplaceholder.typicode.com/posts";
+const getDataUrl = "https://my-json-server.typicode.com/siddharth8899/postsDashboard/db";
 
 export default function App() {
   const [posts, setPosts] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [post, setPost] = React.useState(null);
-  const baseURL = "https://jsonplaceholder.typicode.com/posts";
+  const baseURL = "https://my-json-server.typicode.com/siddharth8899/postsDashboard/db";
 
   React.useEffect(() => {
     axios.get(getDataUrl).then((response) => {

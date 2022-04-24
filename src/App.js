@@ -2,8 +2,11 @@ import { Button, FormControl, TextField } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import './App.css';
 import Accordion from './Accordion';
+import axios from "axios";
 
 function App() {
+  const getDataUrl = "https://my-json-server.typicode.com/siddharth8899/postsDashboard/db";
+
   const [post, setPost] = useState({
     userName: '',
     title: '',
@@ -12,11 +15,14 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [edit, setEdit] = useState(false);
   const [index, setIndex] = useState('');
+
   useEffect(() => {
-    posts.map(post=>{
-      return <Accordion post={post} />
-    })
-  }, [posts])
+    axios.get(getDataUrl).then((response) => {
+      setPosts(response.data.posts);
+    }).catch(error => {
+      console.log(error);
+    });
+  }, []);
 
   const createPost = (event) => {
     const { name = '', value = '' } = event.target;
@@ -98,7 +104,7 @@ function App() {
         />
         <Button variant="contained" onClick={submit} style={{margin: '20px'}}>{edit ? "edit" : "submit"}</Button>
       </FormControl>
-      {posts.map((post, index)=>
+      {posts.length!==0 && posts.map((post, index)=>
         (<Accordion post={post} key={index} index={index} deletePost={deletePost} editPost={editPost} />
       ))}
     </div>
