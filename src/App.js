@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import Accordion from './Accordion';
 import axios from "axios";
+import Loader from './Loader';
 
 function App() {
   const getDataUrl = "https://my-json-server.typicode.com/siddharth8899/postsDashboard/db";
@@ -15,10 +16,13 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [edit, setEdit] = useState(false);
   const [index, setIndex] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios.get(getDataUrl).then((response) => {
       setPosts(response.data.posts);
+      setLoading(false);
     }).catch(error => {
       console.log(error);
     });
@@ -104,6 +108,9 @@ function App() {
         />
         <Button variant="contained" onClick={submit} style={{margin: '20px'}}>{edit ? "edit" : "submit"}</Button>
       </FormControl>
+      {
+        loading && <Loader />
+      }
       {posts.length!==0 && posts.map((post, index)=>
         (<Accordion post={post} key={index} index={index} deletePost={deletePost} editPost={editPost} />
       ))}
